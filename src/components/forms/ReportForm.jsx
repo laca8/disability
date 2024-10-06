@@ -1,12 +1,24 @@
 import React,{useState} from 'react'
 import {useNavigate} from 'react-router-dom'
+import data from '../../data.json'
 
 const ReportForm = () => {
+  const x = JSON.stringify(data)
+  const y = JSON.parse(x)
+  //console.log(x);
+  
+  
+  
+  const cities =[]
+  console.log(cities);
+  
+  const [dats,setDats] = useState(y.filter((v,i,a)=>a.findIndex(v2=>(v["المحافظة"] === v2["المحافظة"]))===i))
   const navigator = useNavigate()
   const [name,setName] = useState('')
   const [phone,setPhone] = useState('')
   const [city,setCity] = useState('')
   const [place,setPlace] = useState('')
+  const [shiek,setShiek] = useState('')
   const [type,setType] = useState('')
 
   const [id,setId] = useState('')
@@ -100,17 +112,45 @@ const ReportForm = () => {
             <label>تاريخ الميلاد</label>
             <input className='bg-gray-100 p-1 rounded-sm border-2 border-gray-400' value={age} onChange={(e)=>setAge(e.target.value)} type='text' placeholder='ادخل تاريخ الميلاد ' />
           </div>
-          <div className='flex flex-col w-auto p-1'>
+          <div className='flex flex-col  w-auto p-1'>
             <label>المحافظة <span className='text-red-700'>*</span></label>
-            <input className='bg-gray-100 p-1 rounded-sm border-2 border-gray-400' type='text' value={city} onChange={(e)=>setCity(e.target.value)} placeholder='ادخل المحافظة' />
+           
+            <select id="countries" className="bg-gray-100 p-1 rounded-sm border-2 border-gray-400"value={city} onChange={(e)=>setCity(e.target.value)}  >
+              <option selected >اختر المحافظة </option>
+           {
+            dats &&dats?.map((x,i)=>(
+              <option key={i}>{x['المحافظة']}</option>
+            ))
+           }
+            </select>
           </div>
-          <div className='flex flex-col w-auto p-1'>
+          <div className='flex flex-col  w-auto p-1'>
             <label>المركز/الحي<span className='text-red-700'>*</span></label>
-            <input className='bg-gray-100 p-1 rounded-sm border-2 border-gray-400' type='text' value={place} onChange={(e)=>setPlace(e.target.value)} placeholder='ادخل المركز/الحي' />
+            <select  disabled={!city} id="countries" className="bg-gray-100 p-1 rounded-sm border-2 border-gray-400" placeholder='ادخل المركز/الحي' value={place} onChange={(e)=>setPlace(e.target.value)}  >
+              <option selected >اختر الحي </option>
+           {
+           city && y&&y.filter((x,i)=> x['المحافظة']  == city).filter((v,i,a)=>a.findIndex(v2=>(v["الحي"] === v2["الحي"]))===i)?.map((x,i)=>(
+              <option key={i}>{x['الحي']}</option>
+            
+            
+            ))
+           }
+            </select>
+        
           </div>
-          <div className='flex flex-col w-auto p-1'>
+          <div className='flex flex-col  w-auto p-1'>
             <label>القرية/الشياخة<span className='text-red-700'>*</span></label>
-            <input className='bg-gray-100 p-1 rounded-sm border-2 border-gray-400' type='text'  placeholder='ادخل القرية/الشياخة' />
+            <select  disabled={!place} id="countries" className="bg-gray-100 p-1 rounded-sm border-2 border-gray-400" placeholder='ادخل القرية/الشياخة' value={shiek} onChange={(e)=>setShiek(e.target.value)}  >
+              <option selected >اختر الشياخة </option>
+           {
+          place && y && y?.filter((x,i)=> x['الحي']  == place && x['المحافظة']  == city)?.map((x,i)=>(
+              <option key={i}>{x['الشياخة']}</option>
+            
+            
+            ))
+           }
+            </select>
+        
           </div>
           <div className='flex flex-col w-auto p-1'>
             <label>النوع<span className='text-red-700'>*</span></label>

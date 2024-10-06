@@ -169,7 +169,7 @@ const Form1 = () => {
             <select  disabled={!connPlace} id="countries" className="bg-gray-100 p-1 rounded-sm border-2 border-gray-400" placeholder='ادخل القرية/الشياخة' value={connShiek} onChange={(e)=>setConnShiek(e.target.value)}  >
               <option selected >اختر الشياخة </option>
            {
-          connPlace && y && y?.filter((x,i)=> x['الحي']  == connPlace)?.map((x,i)=>(
+          connPlace && y && y?.filter((x,i)=> x['الحي']  == connPlace && x['المحافظة']  == connCity)?.map((x,i)=>(
               <option key={i}>{x['الشياخة']}</option>
             
             

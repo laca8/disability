@@ -1,7 +1,10 @@
 import React,{useState} from 'react'
 
-const Navbar = ({serv,setServ}) => {
-    console.log(serv);
+const Navbar = () => {
+    const [selectedValue, setSelectedValue] = useState(false); 
+    const handleChange = (event) => {
+        setSelectedValue(!selectedValue)
+     };
     
   return (
     <nav className=' w-full h-full bg-gray-400 shadow-sm shadow-black' >
@@ -13,17 +16,26 @@ const Navbar = ({serv,setServ}) => {
                 </a>
             </div>
             <ul className='flex flex-row  items-center gap-5 cursor-pointer '>
-                <li>
-                    <div className='relative serv'>
-                    <button className='btn-serv'>ادارة الخدمات ^</button>
-                    <ul className='list-serv   absolute bg-white top-9 rounded-sm  border-2 border-gray-400 w-40'>
-                        <li className='li-serv border-b-2 p-1' onClick={()=>setServ('serv')}>تسجيل خدمة</li>
-                        <li className='p-1' onClick={()=>setServ('sugg')}>
-                     تسجيل استفسارات
-                        </li>
-                    </ul>
-                    </div>
+                <li className='relative'>
+                    
+<button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" onClick={()=>{handleChange()}} className="w-32" type="button">ادارة الخدمات^
+</button>
+
+
+<div  className={`z-10 absolute bg-white divide-y divide-gray-100 rounded-lg shadow w-44  ${selectedValue ? 'visible' : 'invisible'} `}>
+    <ul className="p-1 text-sm text-gray-900 " aria-labelledby="dropdownDefaultButton">
+      <li onClick={()=>{handleChange()}}>
+        <a href="/dis" className="block p-1 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">تسجيل خدمات</a>
+      </li>
+      <li onClick={()=>{handleChange()}}>
+        <a href="/suggDis" className="block p-1 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">تسجيل استفسارات</a>
+      </li>
+     
+    </ul>
+</div>
                 </li>
+                
+                
             <li className='hover:border-b-2 border-black'>
                 <a href='/reports'>البلاغات</a>
             </li>

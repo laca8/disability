@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import Form1 from '../components/forms/Form1'
 import { useNavigate } from 'react-router-dom'
-const Home = () => {
+const Disables = () => {
      const dis = ['اعاقه حركية','اعاقه بصرية','اعاقة ذهنية','إعاقة متعددة','إعاقة سمعية','إعاقة عقلية']
      const dis2 = ['استفسارات اعاقه حركية','استفسارات اعاقه بصرية','استفسارات اعاقة ذهنية','استفسارات إعاقة متعددة','استفسارات إعاقة سمعية','استفسارات إعاقة عقلية','اخري']
      const sides = ['العاملين الصحيين','الرعاية الأساسية','خدمة المواطنين','الإتصال السياسي','الطب الوقائى','بنوك الدم','قطاع السكان و تنظيم الاسرة','الصحة النفسية','القطاع التعليمي','هيئة الإسعاف المصرية','الهيئة العامة للتأمين الصحي','أمانة المراكز','القطاع العلاجى','اخري']
@@ -29,11 +29,6 @@ const Home = () => {
                 <p onClick={()=>{handleClick()}} key={i} className={`p-4 rounded-md m-2 text-center text-white border-2 cursor-pointer hover:scale-95 duration-200 transition-all`} style={{backgroundColor:`${colors[i]}`}}>{x}</p>
               ))}
      
-           {
-              dis2.map((x,i)=>(
-                <p onClick={()=>{handleClick()}} key={i} className={`p-4 rounded-md m-2 text-center text-white border-2 cursor-pointer hover:scale-95 duration-200 transition-all`} style={{backgroundColor:`${colors[i]}`}}>{`${x}`}</p>
-              ))
-            }
               </>
         
 
@@ -52,4 +47,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Disables

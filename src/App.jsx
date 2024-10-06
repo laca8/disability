@@ -14,17 +14,20 @@ import SuggestionList from './pages/SuggestionList'
 import AddNotesSugg from './components/suggList/NotesSugg'
 import ShowSugg from './pages/ShowSugg'
 import Create from './pages/Create'
+import Disables from './pages/Disables'
+import SuggDis from './pages/SuggDisables'
 
 function App() {
-  const [serv,setServ] = useState('')
 
 
   return (
     <>
-      <Navbar serv={serv} setServ={setServ}/>
+      <Navbar />
       <BrowserRouter>
       <Routes>
-        <Route element={<Home serv={serv} setServ={setServ}/>} path='/'></Route>
+        <Route element={<Home />} path='/'></Route>
+        <Route element={<Disables />} path='/dis'></Route>
+        <Route element={<SuggDis />} path='/suggDis'></Route>
         <Route element={<Suggestions/>} path='/suggestion'></Route>
         <Route element={<Report/>} path='/report'></Route>
         <Route element={<Reports/>} path='/reports'></Route>
